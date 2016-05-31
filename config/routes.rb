@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'stat_pages#home'
+
+  get 'stat_pages/help'
+
+  get 'stat_pages/about'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
