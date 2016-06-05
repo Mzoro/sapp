@@ -4,7 +4,7 @@ class StatPagesControllerTest < ActionController::TestCase
   setup do
     @same_title = "Ruby on Rails Tutorial Sample App"
   end
-  
+
   test "should get home" do
     get :home
     assert_response :success
@@ -22,5 +22,12 @@ class StatPagesControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "title", "About | #{@same_title}"
   end
+
+  test "should get contact" do
+    get :contact
+    assert_response :success
+    assert_select "title", "Contact | #{@same_title}"
+  end
+
 
 end
