@@ -24,7 +24,7 @@ class UsersControllerTest < ActionController::TestCase
   end  
 
   test "should redirect update untill logged in" do
-    patch :update, id: @user, user: { name: "fgyt", email: "huy@juy.com" }
+    patch :update, id: @user, user: { name: "fgyt", email: "luy@juy.com" }
     assert flash.any?
     assert_redirected_to login_url
   end
@@ -57,4 +57,14 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to root_url
   end
+
+  test "should not allow the admin attribute to be edited via the web" do
+    log_in_as(@user2)
+    assert_not @user2.admin?
+    patch :update, id: @user2, user: { password:              "dfrr",
+                                       password_confirmation: "dfrr",
+                                       admin: true }
+    assert_not @user2.admin?
+  end
+
 end
